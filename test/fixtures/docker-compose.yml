@@ -3,7 +3,6 @@ prism:
   build: ./docker-images/node
   expose:
     - '3000'
-  net: col_pandora_compose_test_1
   environment:
     AURORA_NAME: col_pandora_compose_test_1_aurora
     CORE_NAME: col_pandora_compose_test_1_core
@@ -18,7 +17,6 @@ core:
   build: ./docker-images/node
   volumes:
     - './concepts:/data/concepts'
-  net: col_pandora_compose_test_1
   environment:
     NODE_ENV: production
     AURORA_NAME: col_pandora_compose_test_1_aurora
@@ -34,7 +32,6 @@ aurora:
   build: ./docker-images/node
   volumes:
     - './concepts:/data/concepts'
-  net: col_pandora_compose_test_1
   environment:
     NODE_ENV: production
     AURORA_NAME: col_pandora_compose_test_1_aurora
@@ -50,7 +47,6 @@ mongo:
   image: 'mongo:3'
   ports:
     - '27017'
-  net: col_pandora_compose_test_1
   environment:
     AURORA_NAME: col_pandora_compose_test_1_aurora
     CORE_NAME: col_pandora_compose_test_1_core
@@ -65,7 +61,6 @@ redis:
   image: 'redis:3'
   expose:
     - '6379'
-  net: col_pandora_compose_test_1
   environment:
     AURORA_NAME: col_pandora_compose_test_1_aurora
     CORE_NAME: col_pandora_compose_test_1_core

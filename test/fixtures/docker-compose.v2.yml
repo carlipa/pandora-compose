@@ -53,4 +53,4 @@ services:
     privileged: false
 networks:
   col_pandora_compose_test_1:
-    external: true
+    driver: bridge

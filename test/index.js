@@ -31,21 +31,6 @@ describe('Pandora Compose', function test () {
 
   const compose = new PandoraCompose(composeConfig);
 
-  before('network must exist', (done) => {
-    compose.getDocker()
-      .listNetworksAsync()
-      .then((networks) => {
-        return some(networks, (network) => network.Name === composeConfig.projectName);
-      })
-      .then((networkOk) => {
-        if (networkOk) {
-          return done();
-        }
-        return done(new Error(`Network is missing,
-        please create a bridge network named "${composeConfig.projectName}"`));
-      });
-  });
-
   it('should run compose from docker (pulled)', () => {
     const pandoraComposePull = new PandoraCompose(composeConfig, {
       composeImageName: 'gcoupelant/docker-compose',
