@@ -1,6 +1,6 @@
 {
   "name": "@carlipa/pandora-compose",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Pandora Compose",
   "main": "lib/index.js",
   "scripts": {
