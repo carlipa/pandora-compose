@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "start": "npm run test:watch",
-    "test": "mocha",
+    "test": "NODE_ENV=test mocha",
     "test:watch": "npm run test -- --watch",
     "test:coverage": "nyc --reporter=lcov npm test -- --reporter dot && nyc report",
     "lint": "eslint src/",
@@ -37,6 +37,7 @@
     "babel-cli": "^6.10.1",
     "babel-core": "^6.10.4",
     "babel-eslint": "^6.1.0",
+    "babel-plugin-istanbul": "^1.0.2",
     "babel-plugin-relative-import": "^1.0.3",
     "babel-plugin-transform-class-properties": "^6.10.2",
     "babel-plugin-transform-function-bind": "^6.8.0",
@@ -53,5 +54,9 @@
     "mocha": "^2.5.3",
     "nyc": "^6.6.1",
     "rimraf": "^2.5.3"
+  },
+  "nyc": {
+    "sourceMap": false,
+    "instrument": false
   }
 }
