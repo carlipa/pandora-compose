@@ -1,5 +1,5 @@
-.idea/
 node_modules/
-src/
-lib/__tests__/
+.DS_Store
+*.log
+.nyc_output/
 coverage/
