@@ -9,7 +9,7 @@ import { each, find, some } from 'lodash';
 
 import PandoraDocker from '@carlipa/pandora-docker';
 
-import PandoraCompose from '../';
+import PandoraCompose from '../src';
 
 Promise.promisifyAll(fs);
 
