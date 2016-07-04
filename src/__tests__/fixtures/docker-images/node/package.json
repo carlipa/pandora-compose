@@ -1,0 +1,21 @@
+{
+  "name": "@carlipa/col-core",
+  "version": "3.0.0-alpha.3",
+  "private": true,
+  "description": "Carlipa Online V3",
+  "main": "lib/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "engines": {
+    "node": "~5.3.0"
+  },
+  "repository": {},
+  "author": {
+    "name": "Guillaume Coupelant",
+    "email": "gcoupelant@carlipa.com"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {},
+  "devDependencies": {}
+}

@@ -1,0 +1,56 @@
+version: '2'
+services:
+  prism:
+    container_name: col_pandora_compose_test_1_prism
+    build: ./docker-images/node
+    expose:
+      - '3000'
+    networks:
+      - col_pandora_compose_test_1
+    environment:
+      NODE_ENV: production
+    restart: always
+    privileged: false
+  core:
+    container_name: col_pandora_compose_test_1_core
+    build: ./docker-images/node
+    volumes:
+      - './concepts:/data/concepts'
+    networks:
+      - col_pandora_compose_test_1
+    environment:
+      NODE_ENV: production
+    restart: always
+    privileged: false
+  aurora:
+    container_name: col_pandora_compose_test_1_aurora
+    build: ./docker-images/node
+    volumes:
+      - './concepts:/data/concepts'
+    networks:
+      - col_pandora_compose_test_1
+    environment:
+      NODE_ENV: production
+    restart: always
+    privileged: false
+  mongo:
+    container_name: col_pandora_compose_test_1_mongo
+    image: 'mongo:3'
+    ports:
+      - '27017'
+    networks:
+      - col_pandora_compose_test_1
+    restart: always
+    privileged: false
+  redis:
+    container_name: col_pandora_compose_test_1_redis
+    image: 'redis:3'
+    expose:
+      - '6379'
+    networks:
+      - col_pandora_compose_test_1
+    restart: always
+    privileged: false
+networks:
+  col_pandora_compose_test_1:
+    external: true

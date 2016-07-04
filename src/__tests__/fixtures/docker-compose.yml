@@ -1,0 +1,77 @@
+prism:
+  container_name: col_pandora_compose_test_1_prism
+  build: ./docker-images/node
+  expose:
+    - '3000'
+  net: col_pandora_compose_test_1
+  environment:
+    AURORA_NAME: col_pandora_compose_test_1_aurora
+    CORE_NAME: col_pandora_compose_test_1_core
+    MONGO_NAME: col_pandora_compose_test_1_mongo
+    PRISM_NAME: col_pandora_compose_test_1_prism
+    REDIS_NAME: col_pandora_compose_test_1_redis
+    NETWORK: col_pandora_compose_test_1
+  restart: always
+  privileged: false
+core:
+  container_name: col_pandora_compose_test_1_core
+  build: ./docker-images/node
+  volumes:
+    - './concepts:/data/concepts'
+  net: col_pandora_compose_test_1
+  environment:
+    NODE_ENV: production
+    AURORA_NAME: col_pandora_compose_test_1_aurora
+    CORE_NAME: col_pandora_compose_test_1_core
+    MONGO_NAME: col_pandora_compose_test_1_mongo
+    PRISM_NAME: col_pandora_compose_test_1_prism
+    REDIS_NAME: col_pandora_compose_test_1_redis
+    NETWORK: col_pandora_compose_test_1
+  restart: always
+  privileged: false
+aurora:
+  container_name: col_pandora_compose_test_1_aurora
+  build: ./docker-images/node
+  volumes:
+    - './concepts:/data/concepts'
+  net: col_pandora_compose_test_1
+  environment:
+    NODE_ENV: production
+    AURORA_NAME: col_pandora_compose_test_1_aurora
+    CORE_NAME: col_pandora_compose_test_1_core
+    MONGO_NAME: col_pandora_compose_test_1_mongo
+    PRISM_NAME: col_pandora_compose_test_1_prism
+    REDIS_NAME: col_pandora_compose_test_1_redis
+    NETWORK: col_pandora_compose_test_1
+  restart: always
+  privileged: false
+mongo:
+  container_name: col_pandora_compose_test_1_mongo
+  image: 'mongo:3'
+  ports:
+    - '27017'
+  net: col_pandora_compose_test_1
+  environment:
+    AURORA_NAME: col_pandora_compose_test_1_aurora
+    CORE_NAME: col_pandora_compose_test_1_core
+    MONGO_NAME: col_pandora_compose_test_1_mongo
+    PRISM_NAME: col_pandora_compose_test_1_prism
+    REDIS_NAME: col_pandora_compose_test_1_redis
+    NETWORK: col_pandora_compose_test_1
+  restart: always
+  privileged: false
+redis:
+  container_name: col_pandora_compose_test_1_redis
+  image: 'redis:3'
+  expose:
+    - '6379'
+  net: col_pandora_compose_test_1
+  environment:
+    AURORA_NAME: col_pandora_compose_test_1_aurora
+    CORE_NAME: col_pandora_compose_test_1_core
+    MONGO_NAME: col_pandora_compose_test_1_mongo
+    PRISM_NAME: col_pandora_compose_test_1_prism
+    REDIS_NAME: col_pandora_compose_test_1_redis
+    NETWORK: col_pandora_compose_test_1
+  restart: always
+  privileged: false

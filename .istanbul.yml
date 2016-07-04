@@ -1,0 +1,6 @@
+verbose: false
+instrumentation:
+    root: .
+    excludes: 
+      - '**/lib/**'
+      - '**/__tests__/**'
