@@ -582,12 +582,20 @@ export default class PandoraCompose {
     return this._runDockerCompose$(command);
   }
 
+  buildImages () {
+    return PandoraCompose.dockerComposeRunObservableToObject(this.buildImages$.apply(this, arguments));
+  }
+
   /**
    * Pull a compose project's images
    * @returns {Observable} an Observable of the pull stream
    */
   pullImages$ () {
     return this._runDockerCompose$(['pull']);
+  }
+
+  pullImages () {
+    return PandoraCompose.dockerComposeRunObservableToObject(this.pullImages$.apply(this, arguments));
   }
 
   /**
@@ -603,6 +611,10 @@ export default class PandoraCompose {
     return this._runDockerCompose$(command);
   }
 
+  up () {
+    return PandoraCompose.dockerComposeRunObservableToObject(this.up$.apply(this, arguments));
+  }
+
   /**
    * Stop the compose project containers
    * @param timeout the docker-compose stop timeout value (default: 10)
@@ -610,6 +622,10 @@ export default class PandoraCompose {
    */
   stop$ ({ timeout = 10 } = {}) {
     return this._runDockerCompose$(['stop', '-t', String(timeout)]);
+  }
+
+  stop () {
+    return PandoraCompose.dockerComposeRunObservableToObject(this.stop$.apply(this, arguments));
   }
 
   /**
@@ -620,6 +636,10 @@ export default class PandoraCompose {
     return this._runDockerCompose$(['start']);
   }
 
+  start () {
+    return PandoraCompose.dockerComposeRunObservableToObject(this.start$.apply(this, arguments));
+  }
+
   /**
    * Pause the compose project running containers
    * @returns {Observable} an Observable of the stop stream
@@ -628,12 +648,20 @@ export default class PandoraCompose {
     return this._runDockerCompose$(['pause']);
   }
 
+  pause () {
+    return PandoraCompose.dockerComposeRunObservableToObject(this.pause$.apply(this, arguments));
+  }
+
   /**
    * Unpause the compose project paused containers
    * @returns {Observable} an Observable of the stop stream
    */
   unpause$ () {
     return this._runDockerCompose$(['unpause']);
+  }
+
+  unpause () {
+    return PandoraCompose.dockerComposeRunObservableToObject(this.unpause$.apply(this, arguments));
   }
 
   /**
@@ -649,6 +677,10 @@ export default class PandoraCompose {
     return this._runDockerCompose$(command);
   }
 
+  rm () {
+    return PandoraCompose.dockerComposeRunObservableToObject(this.rm$.apply(this, arguments));
+  }
+
   /**
    * Stop containers and remove them
    * @param removeVolumes if true, will remove volumes associated with containers (default: false)
@@ -660,5 +692,9 @@ export default class PandoraCompose {
       command.push('-v');
     }
     return this._runDockerCompose$(command);
+  }
+
+  down () {
+    return PandoraCompose.dockerComposeRunObservableToObject(this.down$.apply(this, arguments));
   }
 }
