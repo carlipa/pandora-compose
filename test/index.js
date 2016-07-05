@@ -109,15 +109,6 @@ describe('Pandora Compose', function test () {
     return assert.isFulfilled(promise);
   });
 
-  it('should remove zombies', () => {
-    const promise = compose.purgeDockerComposeRunners()
-      .then(() => {
-        // TODO
-      });
-
-    return assert.isFulfilled(promise);
-  });
-
   it('should pull compose project images', () => {
     const observable$ = compose.pullImages$();
     const promise = PandoraCompose.dockerComposeRunObservableToObject(observable$)
