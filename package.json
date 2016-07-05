@@ -7,7 +7,7 @@
     "start": "npm run test:watch",
     "test": "NODE_ENV=test mocha",
     "test:watch": "npm run test -- --watch",
-    "test:coverage": "nyc npm test -- --reporter nyan && nyc report --reporter=text-lcov | coveralls",
+    "test:coverage": "nyc npm test -- --reporter dot && nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint src/",
     "compile": "rimraf lib/*; babel src/ -d lib/ -s && cp -r src/dockerfiles lib/dockerfiles",
     "compile:watch": "npm run compile -- -w",
