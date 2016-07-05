@@ -31,6 +31,19 @@ describe('Pandora Compose', function test () {
 
   const compose = new PandoraCompose(composeConfig);
 
+  it('should fail to create a Pandora Compose when config is empty', () => {
+    assert.throws(() => {
+      const badCompose = new PandoraCompose();
+      badCompose.getDocker();
+    });
+  });
+
+  it('should remove orphaned docker-compose runners', () => {
+    const promise = compose.purgeDockerComposeRunners();
+
+    return assert.isFulfilled(promise);
+  });
+
   it('should run compose from docker (pulled)', () => {
     const pandoraComposePull = new PandoraCompose(composeConfig, {
       composeImageName: 'gcoupelant/docker-compose',
@@ -188,6 +201,23 @@ describe('Pandora Compose', function test () {
       return assert.isFulfilled(promise);
     });
 
+    it('should fail to get logs from a missing compose service', () => {
+      const promise = compose
+        .getServiceLogs('pikachu')
+        .then(({ stdout$, stderr$ }) => {
+          return Promise.props({
+            stdout: stdout$.toArray().toPromise(),
+            stderr: stderr$.toArray().toPromise()
+          });
+        })
+        .then(({ stdout, stderr }) => {
+          assert.isAbove(stdout.length, 0);
+          assert.isArray(stderr);
+        });
+
+      return assert.isRejected(promise, Error, 'No such service');
+    });
+
     it('should get logs from compose service (using follow)', () => {
       const promise = new Promise((resolve) => {
         compose
@@ -328,6 +358,36 @@ describe('Pandora Compose', function test () {
         });
 
       return assert.isFulfilled(promise);
+    });
+
+    it('should fail to get events of a missing compose service', () => {
+      const promise = compose
+        .up$({
+          forceRecreate: false
+        })
+        .toPromise()
+        .then(() => compose.getServiceEvents('pikachu'))
+        .then((observable$) => {
+          const output = [];
+
+          observable$.subscribe((x) => {
+            try {
+              output.push(JSON.parse(x));
+            } catch (err) {
+              output.push(x);
+            }
+          });
+
+          return compose
+            .stop$({ timeout: 2 })
+            .toPromise()
+            .thenReturn(output);
+        })
+        .then((output) => {
+          assert.isArray(output);
+        });
+
+      return assert.isRejected(promise, Error, 'No such service');
     });
 
     it('should down a compose project', () => {
