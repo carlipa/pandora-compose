@@ -8,6 +8,13 @@ node_js:
 
 services:
   - docker
+  
+env:
+  DOCKER_ENGINE_VERSION: "1.9.0"
+  
+before_script:
+  - sudo apt-get update
+  - sudo apt-get install -y -q docker-engine=$DOCKER_ENGINE_VERSION
 
 script:
   - npm run lint
