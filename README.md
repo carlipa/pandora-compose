@@ -1,5 +1,6 @@
 Pandora Compose
 =========
+[![npm version](https://badge.fury.io/js/%40carlipa%2Fpandora-compose.png)](https://badge.fury.io/js/%40carlipa%2Fpandora-compose)
 
 A library that provide controls to manipulate docker-compose projects
 
