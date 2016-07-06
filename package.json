@@ -9,7 +9,7 @@
     "test:watch": "npm run test -- --watch",
     "test:coverage": "nyc npm test -- --reporter dot && nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint src/",
-    "compile": "rimraf lib/*; babel src/ -d lib/ -s && cp -r src/dockerfiles lib/dockerfiles",
+    "compile": "rimraf lib/*; mkdir -p lib; cp -r src/dockerfiles lib/dockerfiles && babel src/ -d lib/ -s",
     "compile:watch": "npm run compile -- -w",
     "prepublish": "npm run compile"
   },
