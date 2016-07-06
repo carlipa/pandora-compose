@@ -19,11 +19,6 @@ chai.use(chaiAsPromised);
 describe('Pandora Compose', function test () {
   this.timeout(600000);
 
-  if (process.env.CI_SERVER === 'yes') {
-    console.log('Cannot test pandora-compose, since no docker is available on GitLab CI\n');
-    return;
-  }
-
   const composeConfig = {
     projectName: 'col_pandora_compose_test_1',
     composeFilePath: path.resolve(path.join(__dirname, 'fixtures/docker-compose.v2.yml'))
