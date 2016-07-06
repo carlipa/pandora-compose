@@ -26,7 +26,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@carlipa/pandora-docker": "^1.0.1",
+    "@carlipa/pandora-docker": "^1.0.2",
     "@reactivex/rxjs": "^5.0.0-beta.9",
     "bluebird": "^3.4.1",
     "lodash": "^4.13.1",
