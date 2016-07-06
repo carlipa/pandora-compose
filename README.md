@@ -12,7 +12,7 @@ This library is based on RxJS Observable, which provide more flexibility than ra
 
 ## Docker
 
-This library use `dockerode` to communicate with the `doker` API.
+This library use `dockerode` to communicate with the `docker` API.
 
 ## Docker compose
 
