@@ -68,8 +68,8 @@ export default class PandoraCompose {
 
     this.config = defaults({}, pick(options, ...Object.keys(PandoraCompose.defaults)), PandoraCompose.defaults);
 
-    const _pandoraDocker = pandoraDocker || new PandoraDocker(this.config.dockerOptions);
-    this._docker = _pandoraDocker.getDocker();
+    this._pandoraDocker = pandoraDocker || new PandoraDocker(this.config.dockerOptions);
+    this._docker = this._pandoraDocker.getDocker();
   }
 
   /**
@@ -181,8 +181,10 @@ export default class PandoraCompose {
     // Current working directory
     const projectDir = this.project.projectDir || composeFilePath ? path.dirname(composeFilePath) : process.cwd();
 
+    const socketPath = this._pandoraDocker.getSocketPath() || '/var/run/docker.sock';
+
     const volumes = {
-      '/var/run/docker.sock': {},
+      [socketPath]: {},
       [projectDir]: {}
     };
 
@@ -274,6 +276,7 @@ export default class PandoraCompose {
           WorkingDir: projectDir,
           Env: [
             ...customEnv,
+            `DOCKER_HOST=unix://${socketPath}`,
             projectName ? `COMPOSE_PROJECT_NAME=${projectName}` : undefined,
             composeFilePath ? `COMPOSE_FILE=${composeFilePath}` : undefined
           ],
@@ -283,7 +286,7 @@ export default class PandoraCompose {
         }, {
           Binds: [
             `${projectDir}:${projectDir}`,
-            '/var/run/docker.sock:/var/run/docker.sock'
+            `${socketPath}:${socketPath}`
           ],
           Privileged: true
         }, (err, data, container) => {
@@ -348,11 +351,14 @@ export default class PandoraCompose {
     const projectCommand = this.project.projectName ? ['-p', this.project.projectName] : [];
     const composeFileCommand = this.project.composeFilePath ? ['-f', this.project.composeFilePath] : [];
 
+    const socketPath = this._pandoraDocker.getSocketPath() || '/var/run/docker.sock';
+
     const child = spawn('docker-compose', [...projectCommand, ...composeFileCommand, ...command], {
       cwd: this.project.projectDir,
       env: {
         ...process.env,
-        ...this.config.env
+        ...this.config.env,
+        DOCKER_HOST: `unix://${socketPath}`
       }
     });
 
