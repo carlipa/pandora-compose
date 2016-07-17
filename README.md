@@ -4,7 +4,7 @@ Pandora Compose
 [![Coverage Status](https://coveralls.io/repos/github/carlipa/pandora-compose/badge.svg?branch=master)](https://coveralls.io/github/carlipa/pandora-compose?branch=master)
 [![npm version](https://badge.fury.io/js/%40carlipa%2Fpandora-compose.svg)](https://badge.fury.io/js/%40carlipa%2Fpandora-compose)
 
-A library that provide controls to manipulate docker-compose projects
+A library that provides controls to manipulate docker-compose projects
 
 ## RxJS
 
@@ -12,7 +12,7 @@ This library is based on RxJS Observable, which provide more flexibility than ra
 
 ## Docker
 
-This library use `dockerode` to communicate with the `docker` API.
+This library uses `dockerode` to communicate with the `docker` API.
 
 ## Docker compose
 
