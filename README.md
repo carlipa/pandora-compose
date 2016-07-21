@@ -1,6 +1,7 @@
 Pandora Compose
 =========
 [![Build Status](https://travis-ci.org/carlipa/pandora-compose.svg?branch=master)](https://travis-ci.org/carlipa/pandora-compose)
+[![Code Climate](https://codeclimate.com/github/carlipa/pandora-compose/badges/gpa.svg)](https://codeclimate.com/github/carlipa/pandora-compose)
 [![Coverage Status](https://coveralls.io/repos/github/carlipa/pandora-compose/badge.svg?branch=master)](https://coveralls.io/github/carlipa/pandora-compose?branch=master)
 [![npm version](https://badge.fury.io/js/%40carlipa%2Fpandora-compose.svg)](https://badge.fury.io/js/%40carlipa%2Fpandora-compose)
 
