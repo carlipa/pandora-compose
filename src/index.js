@@ -597,7 +597,7 @@ export default class PandoraCompose {
    * @returns {Observable} an Observable of the pull stream
    */
   pullImages$ () {
-    return this._runDockerCompose$(['pull']);
+    return this._runDockerCompose$(['pull', '--ignore-pull-failures']);
   }
 
   pullImages () {
